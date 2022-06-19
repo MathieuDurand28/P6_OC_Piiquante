@@ -1,6 +1,7 @@
-const express = require("express");
-const mongoose = require('mongoose');
-const path = require('path');
+const express = require("express")
+const mongoose = require('mongoose')
+const path = require('path')
+const config = JSON.parse('/server/config/conf.json') ?? []
 const app = express();
 
 const userRoutes = require('./routes/user');
@@ -10,7 +11,7 @@ const saucesRoutes = require('./routes/sauces');
 /**
  * Connexion à la base de données MongoDB
  */
-mongoose.connect('mongodb+srv://Piiquante:Sauces@cluster0.cl69o.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect(config['BDD_ACCESS'],
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
