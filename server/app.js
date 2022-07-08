@@ -6,7 +6,6 @@ const app = express();
 const userRoutes = require('./routes/user');
 const saucesRoutes = require('./routes/sauces');
 
-
 /**
  * Connexion à la base de données MongoDB
  */
