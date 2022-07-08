@@ -83,7 +83,7 @@ exports.likeDislikeSauce = (req, res, next) => {
   const userId = req.body.userId
   const sauceId = req.params.id
 
-  if (like === 1) { // Si il s'agit d'un like
+  if (like === 1) {
     Sauce.updateOne({_id: sauceId}, {
       $push: {usersLiked: userId},
       $inc: {likes: +1},})
@@ -103,10 +103,10 @@ exports.likeDislikeSauce = (req, res, next) => {
       })
       .catch((error) => res.status(400).json({error}))
   }
-  if (like === 0) { // Si il s'agit d'annuler un like ou un dislike
+  if (like === 0) {
     Sauce.findOne({_id: sauceId})
       .then((sauce) => {
-        if (sauce.usersLiked.includes(userId)) { // Si il s'agit d'annuler un like
+        if (sauce.usersLiked.includes(userId)) {
           Sauce.updateOne({_id: sauceId}, {
             $pull: {usersLiked: userId},
             $inc: {likes: -1},})
@@ -115,7 +115,7 @@ exports.likeDislikeSauce = (req, res, next) => {
             }))
             .catch((error) => res.status(400).json({error}))
         }
-        if (sauce.usersDisliked.includes(userId)) { // Si il s'agit d'annuler un dislike
+        if (sauce.usersDisliked.includes(userId)) {
           Sauce.updateOne({_id: sauceId}, {
             $pull: {usersDisliked: userId},
             $inc: {dislikes: -1},})
