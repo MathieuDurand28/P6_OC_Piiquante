@@ -16,13 +16,16 @@ mongoose.connect(process.env.BDD_ACCESS,
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
+
 /**
  * sécurisation des en-têtes HTTP
  */
-app.use(helmet ({
-  contentSecurityPolicy: false
-}))
-
+app.use(
+  helmet({
+    crossOriginEmbedderPolicy: false,
+    // ...
+  })
+);
 
 /**
  * Autorisation de connexion entre les clients et le serveur
@@ -32,8 +35,10 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Cross-Origin-Resource-Policy', 'same-site')
   next();
 });
+
 
 //Commande permettant la réception des données du client en JSON.
 app.use(express.json());

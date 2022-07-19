@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
+const mongodbErrorHandler = require('mongoose-mongodb-errors')
+
+mongoose.plugin(mongodbErrorHandler)
+
 
 //Modele de données pour les sauces.
-const sauceSchema = mongoose.Schema({
+const sauceSchema = new mongoose.Schema({
   userId: {type: String},
   name: {type: String},
   manufacturer: {type: String},
@@ -15,5 +19,6 @@ const sauceSchema = mongoose.Schema({
   usersDisliked : { type : Array , "default" : [] },
 })
 
+sauceSchema.plugin(mongodbErrorHandler)
 
 module.exports = mongoose.model('Sauce', sauceSchema)
