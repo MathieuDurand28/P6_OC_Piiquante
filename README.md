@@ -2,7 +2,7 @@
 
 ## Configuration
 1- npm install <br />
-2- pour utiliser l'API, remplissez le fichier server/.env_sample et renommé le en .env
+2- pour utiliser l'API, remplissez le fichier server/.env_sample et renommez le en .env
 
 si une erreur survient, entrez la commande :
 npm install node-pre-gyp -g
