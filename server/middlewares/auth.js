@@ -1,6 +1,13 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ * recuperation et comparaison du token avec la clef secrete pour identifier un utilisateur.
+ */
 module.exports = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1]

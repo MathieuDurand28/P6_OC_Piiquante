@@ -1,5 +1,6 @@
 const express = require("express")
 const mongoose = require('mongoose')
+const helmet = require('helmet')
 const path = require('path')
 require('dotenv').config()
 const app = express();
@@ -14,6 +15,14 @@ mongoose.connect(process.env.BDD_ACCESS,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+/**
+ * sécurisation des en-têtes HTTP
+ */
+app.use(helmet ({
+  contentSecurityPolicy: false
+}))
+
 
 /**
  * Autorisation de connexion entre les clients et le serveur
